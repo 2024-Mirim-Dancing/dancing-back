@@ -22,3 +22,8 @@ async def submit_score(user_id: str, score: int):
 
     return JSONResponse(content={"message": "Score submitted successfully"})
 
+@app.get("/ranking")
+async def get_ranking():
+    ranking = list(user_collection.find(projection={"_id": 0}).sort("score", -1))
+    return JSONResponse(content={"ranking": ranking})
+
