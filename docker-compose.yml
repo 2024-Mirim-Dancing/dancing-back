@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  fastapi-mongodb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+    networks:
+      - 2024md
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - 2024md
+
+networks:
+  2024md:

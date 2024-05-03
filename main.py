@@ -1,14 +1,19 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from pymongo import MongoClient
+import os
 
 app = FastAPI()
 
 # MongoDB 연결
-client = MongoClient("mongodb://localhost:27017/")
+mongo_uri = os.getenv("MONGO_URI")  # 환경 변수에서 URI 가져오기
+client = MongoClient(mongo_uri)
 db = client["admin"]
 user_collection = db["user"]
 
+@app.get("/")
+async def index():
+    return "바보"
 @app.post("/score/{user_id}/{score}")
 async def submit_score(user_id: str, score: int):
     # 사용자 아이디로 검색 후 결과가 없으면 새로운 사용자 추가
@@ -26,4 +31,3 @@ async def submit_score(user_id: str, score: int):
 async def get_ranking():
     ranking = list(user_collection.find(projection={"_id": 0}).sort("score", -1))
     return JSONResponse(content={"ranking": ranking})
-
