@@ -4,7 +4,7 @@ import pymongo
 mongo_host = 'localhost'  # 또는 컨테이너의 IP 주소
 mongo_port = 27017
 mongo_user = 'admin'
-mongo_password = '1234'
+mongo_password = '2024md'
 
 # MongoDB에 연결
 try:
