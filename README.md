@@ -21,3 +21,8 @@ Docker Compose를 사용하여 애플리케이션을 실행합니다. 이 명령
 docker-compose up -d
 ```
 
+<br>
+
+## API 명세서
+- [API 명세서](https://github.com/2024-Mirim-Dancing/Dancing_Back/wiki/API-%EB%AA%85%EC%84%B8%EC%84%9C)
+- Swagger `/docs`
