@@ -8,7 +8,7 @@
 터미널에 `docker login`을 입력하여 로그인합니다.
 <br>
 
-### 3. Docker 이미지 빌드
+### 3. Docker Compose 빌드
 방금 전 클론 받은 파일에 들어가서 터미널에서 Dockerfile이 있는 디렉토리로 이동한 후 다음 명령을 실행하여 Docker 이미지를 빌드합니다.
 ```bash
 docker-compose build
