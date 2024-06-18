@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, Path
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
 from enum import Enum
 import os
@@ -7,20 +8,36 @@ from urllib.parse import quote, unquote
 
 app = FastAPI()
 
+# CORS 설정
+origins = [
+    "http://localhost:3000",  # React development server
+    "http://127.0.0.1:3000"   # Alternative local address
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # MongoDB 연결
-mongo_uri = os.getenv("MONGO_URI")  # 환경 변수에서 URI 가져오기
+mongo_uri = os.getenv("MONGO_URI")
+if not mongo_uri:
+    raise ValueError("MONGO_URI 환경 변수가 설정되지 않았습니다.")
 client = MongoClient(mongo_uri)
 db = client["admin"]
 user_collection = db["user"]
 
 # 선생님 열거형 정의
 class Teacher(str, Enum):
-    김윤환 = "김윤환"
-    유병석 = "유병석"
-    김종성 = "김종성"
-    김영철 = "김영철"
-    김현수 = "김현수"
-    손명수 = "손명수"
+    KYH = "KYH"
+    YBS = "YBS"
+    KJS = "KJS"
+    KYC = "KYC"
+    KHS = "KHS"
+    SMS = "SMS"
 
 @app.get("/")
 async def index():
