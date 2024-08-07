@@ -1,6 +1,6 @@
 ## 프로젝트 실행 방법
 ### 1. 깃허브 클론
-`git clone https://github.com/2024-Mirim-Dancing/Dancing_Back.git`
+`https://github.com/2024-Mirim-Dancing/dancing-back.git`
 <br>
 
 ### 2. Docker desktop 설치 후 로그인
